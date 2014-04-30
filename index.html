@@ -8,7 +8,7 @@
 		<meta name="author" content="Gregory Desvaux">
 		<link rel="shortcut icon" href="images.jpeg">
 
-		<title>Pastis - Golang Restful framework</title>
+		<title>Pastis - Golang microframework</title>
 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -57,7 +57,7 @@
 				<div class="col-md-2">
 				</div>
 				<div class="col-md-8">
-					<h2>Resource Oriented</h2>
+					<h2>RESTful API in a minute</h2>
 					<p>
 						<pre>  
 						   <code class="golang">
@@ -66,10 +66,11 @@
 <span class="k">import</span> (
         <span class="s">"fmt"</span>
         <span class="s">"net/http"</span>
+        <span class="s">"net/url"</span>
         <span class="s">"github.com/guregodevo/pastis"</span>
 )
 
-<span class="k">type</span> ChartResource <span class="k">struct</span> {
+<span class="k">type</span> <span class="t">ChartResource</span> <span class="k">struct</span> {
 }
 
 <span class="k">type</span> Chart <span class="k">struct</span> {
@@ -77,26 +78,73 @@
     Order <span class="t">int</span>
 }
 
+<span class="k">func</span> (res <span class="t">ChartResource</span>) Get(params <span class="t">url.Values</span>) (int, interface{}){
+    id := params.Get("chartid")
+    fmt.Fprintf(w, <span class="s">"Chart id %s!"</span>, id)
+    return 200, map[string]interface{} {<span class="s">"id"</span>:id, <span class="s">"size"</span>:3, <span class="s">"type"</span>:<span class="s">"line"</span>}
+}
 
-<span class="k">func</span> (res DashboardResource) Post(c <span class="t">Chart</span>) (int, interface{}){
-    fmt.Fprintf(w, <span class="s">"Chart %s!"</span>, c.Name)
+<span class="k">func</span> (res <span class="t">ChartResource</span>) Post(c <span class="t">Chart</span>) (int, interface{}){
+    fmt.Fprintf(w, <span class="s">"Posted Chart %s!"</span>, c.Name)
     return 201, nil
 }
 
 <span class="k">func</span> main() {
-    chartResource := <span class="k">new</span>(ChartResource)
+    chartResource := <span class="k">new</span>(<span class="t">ChartResource</span>)
     api := NewAPI()
     api.AddResource(<span class="s">"/dashboards/:dashboardid/chart/:chartid"</span>, chartResource)
     pastis.Start(2333)
 }
-</code>
-
-</div>
-				<div class="col-md-2">
+							</code>
+						</pre>	
+					</p>		
 				</div>
-				
+				<div class="col-md-2">
+				</div>	
 			<hr>
 		</div>
+
+
+		<div class="container">
+			<!-- Example row of columns -->
+			<div class="row">
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-8">
+					<h2>Flexible URL-pattern maching</h2>
+					<p>
+						<pre>  
+						   <code class="golang">
+<span class="k">package</span> main
+
+<span class="k">import</span> (
+        <span class="s">"fmt"</span>
+        <span class="s">"net/http"</span>
+        <span class="s">"net/url"</span>
+        <span class="s">"github.com/guregodevo/pastis"</span>
+)
+
+<span class="k">func</span> comment(params <span class="t">url.Values</span>, body <span class="t">string</span>) (int, interface{}){
+              id := params.Get(<span class="s">"id"</span>)
+              comment := params.Get(<span class="s">"comment"</span>)
+              fmt.Fprintf(w, <span class="s">"Posted Comment %s : %s!"</span>, id, body)
+              return 201, nil
+}
+
+
+<span class="k">func</span> main() {
+    api := NewAPI()
+    api.Post(<span class="s">"^/comment/(?P&lt;id&gt;\\d+)$"</span>, comment) 
+    pastis.Start(2333)
+}						   	
+							</code>
+						</pre>	
+					</p>		
+				</div>
+				<div class="col-md-2">
+				</div>	
+		</div>
+
 
 	</body>
 </html>
