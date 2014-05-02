@@ -1,4 +1,4 @@
-/* Move down content because we have a fixed navbar that is 50px tall */
+/* http://www.colourlovers.com/palette/1805054/India_Song */
 body {
 	padding-top: 50px;
 	padding-bottom: 20px;
@@ -6,47 +6,113 @@ body {
 	letter-spacing: 0px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	/*background:url('images.jpeg')no-repeat;*/
-	background-size:100%;
+	background-size: 100%;
+	background-color: #D0C17E;/*#e0de8c;*/
 	height: 140px;
-	display:block;
-	padding:0 !important;
-	margin:0;
+	display: block;
+	padding: 0 !important;
+	margin: 0;
 }
 
-.btn-primary {
-  background-image: linear-gradient(to bottom,#3b3b3b 0,#3b3b3b 100%);
+.btn:hover {
+	border-color: #D0C17E;
 }
 
-.btn-primary:hover, .btn-primary:focus {
-	background-color: #3b3b3b;
+.btn-default {
+	background-image: -webkit-linear-gradient(top,#fff 0,#E8E9C1 100%);
+	background-image: linear-gradient(to bottom,#fff 0,#E8E9C1 100%);
+	background-color: #E8E9C1;
+	background-repeat: repeat-x;
+	border-color: #FFFFFF;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.btn-default:hover, .btn-default:focus {
+	background-image: linear-gradient(to bottom,#fff 0,#E8E9C1 100%);
+	background-color: #E8E9C1;
 	background-position: 0 -15px;
 }
 
-h1 {
-  font-size: 50px;	
+.btn {
+	font-family: 'ITCSymbolW01-BookItalic';
+	border-color: #22150C;
+}
+
+.btn-primary {
+	background-image: linear-gradient(to bottom,#22150C 0,#22150C 100%);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+	background-color: #22150C;
+	background-position: 0 -15px;
 }
 
 pre {
-  background-color: #222;
-  border: 2px solid #3b3b3b;
-  border-radius: 10px;
-  color: #eee;
-  padding: 0 20px;
+	background-color: #22150C;
+	border: 2px solid #A48E5D;
+	border-radius: 10px;
+	color: #eee;
+	padding: 0 20px;
 }
 
 pre .k {
-  color: #fd971f;
+	color: #fd971f;
 }
 pre .s {
-  color: rgb(242, 72, 64);
-  /*#f92672;*/
+	color: rgb(242, 72, 64);
+	/*#f92672;*/
 }
 pre .t {
-  /*color: #66d9ef;*/
-  color: #a6e22e;
-  color: #96c22e;
-  /*color: rgb(98, 150, 85);*/
+	/*color: #66d9ef;*/
+	color: #a6e22e;
+	color: #96c22e;
+	/*color: rgb(98, 150, 85);*/
 }
 pre .c {
-  color: #777;
+	color: #777;
+}
+
+h1 {
+	font-size: 72px;
+	font-family: 'ITCSymbolW01-BookItalic';
+}
+h2 {
+	font-size: 60px;
+	font-family: 'ITCSymbolW01-BookItalic';
+}
+h3 {
+	font-size: 48px;
+	font-family: 'ITCSymbolW01-BookItalic';
+}
+h4 {
+	font-size: 32px;
+	font-family: 'ITCSymbolW01-BookItalic';
+}
+h5 {
+	font-size: 24px;
+	font-family: 'ITCSymbolW01-BookItalic';
+}
+h6 {
+	font-size: 18px;
+	font-family: 'ITCSymbolW01-BookItalic';
+}
+
+.label-default {
+background-color: #E8E9C1;
+color: #22150C;
+}
+
+.label-primary {
+background-color: #C94C4A;
+color: #E8E9C1;
+}
+
+.label-primary {
+background-color: #C94C4A;
+color: #FFFFFF;
+}
+
+.label-success {
+background-color: #A48E5D;
+color: #FFFFFF;
 }

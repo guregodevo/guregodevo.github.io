@@ -38,26 +38,39 @@
 		<![endif]-->
 
 			<div class="container">
-				<h1> Go framework<img src="pastis_logo.gif" class="img-responsive" alt="Pastis logo"></h1>
+			  <h1><small style="color: #22150C">Go framework    </small><span style="color: #C94C4A">PASTIS</span></h1>
+			</div>
+
+			<div class="container">
+			  <span class="label label-default">Simple</span>
+					<span class="label label-primary">Flexible</span>
+					<span class="label label-success">Extensible</span>
+					<hr />
+			</div>
+						
+			
+			<div class="container">
 			<div class="row">
 				<div class="col-md-2">
 				</div>
-				<div class="col-md-8">
-
-				<a href="https://github.com/guregodevo/pastis#pastis" class="btn btn-primary btn-lg enabled" role="button">README</a>
+				<div class="col-md-4">
+				<a href="https://github.com/guregodevo/pastis#pastis-" class="btn btn-primary btn-lg enabled" role="button">README</a>
 				<a href="https://github.com/guregodevo/pastis" class="btn btn-default btn-lg enabled" role="button">Code</a>
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-6">
 				</div>				
 			</div>
 			</div>
+
+
+
 		<div class="container">
 			<!-- Example row of columns -->
 			<div class="row">
 				<div class="col-md-2">
 				</div>
 				<div class="col-md-8">
-					<h2>RESTful API in a minute</h2>
+					<h3>RESTful API in a minute</h3>
 					<p>
 						<pre>  
 						   <code class="golang">
@@ -101,9 +114,8 @@
 				</div>
 				<div class="col-md-2">
 				</div>	
-			<hr>
 		</div>
-
+</div>
 
 		<div class="container">
 			<!-- Example row of columns -->
@@ -111,7 +123,7 @@
 				<div class="col-md-2">
 				</div>
 				<div class="col-md-8">
-					<h2>Flexible URL-pattern maching</h2>
+					<h3>Flexible URL-pattern maching</h3>
 					<p>
 						<pre>  
 						   <code class="golang">
@@ -144,18 +156,30 @@
 				<div class="col-md-2">
 				</div>	
 		</div>
-
+</div>
 		<div class="container">
 			<!-- Example row of columns -->
 			<div class="row">
 				<div class="col-md-2">
 				</div>
 				<div class="col-md-8">
-					<h2>Ops friendly logs</h2>
+					<h3>Custom filter</h3>
 					<p>
 						<pre>  
 						   <code class="golang">
+// Filter (post-process) Filter (as a struct that defines a FilterFunction)
+<span class="k">func</span> LoggingFilter(w <span class="t">http.ResponseWriter</span>, request <span class="t">*http.Request</span>, chain <span class="t">*FilterChain</span>) {
+    now := time.Now()
+    chain.NextFilter(w, request)
+    log.Printf("[HTTP] %s %s [%v]\n", request.Method, request.URL, time.Now().Sub(now))
+}
 
+<span class="k">func</span> main() {
+    api := NewAPI()
+    api.Post(<span class="s">"^/comment/(?P&lt;id&gt;\\d+)$"</span>, comment) 
+    api.AddFilter(<span class="k">LoggingFilter</span>)
+    pastis.Start(2333)
+}						   	
 						   </code>
 						</pre>	
 					</p>		
@@ -163,7 +187,34 @@
 				<div class="col-md-2">
 				</div>	
 		</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-8">
+					<h3>Custom log</h3>
+					<p>
+						<pre>  
+						   <code class="golang">
 
+<span class="k">func</span> main() {
+    api := pastis.NewAPI()
+    api.SetLevel(<span class="s">"INFO"</span>)
+    api.SetOutput(<span class="s">"ERROR"</span>, os.StdErr, log.Ldate|log.Ltime|log.Lshortfile)
+    api.SetOutput(<span class="s">"INFO"</span>, <span class="s">"DEBUG"</span>, <span class="s">"WARN"</span>, os.StdOut, log.Ltime) 
+    api := NewAPI()
+    api.Post(<span class="s">"^/comment/(?P&lt;id&gt;\\d+)$"</span>, comment) 
+    api.Set(<span class="k">LoggingFilter</span>)
+    pastis.Start(2333)
+}						   	
+						   </code>
+						</pre>	
+					</p>		
+				</div>
+				<div class="col-md-2">
+				</div>	
+		</div>
 
 
 
