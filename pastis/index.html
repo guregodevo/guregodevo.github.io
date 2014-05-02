@@ -203,9 +203,7 @@
     api.SetLevel(<span class="s">"INFO"</span>)
     api.SetOutputs(os.StdErr, log.Ldate|log.Ltime|log.Lshortfile, <span class="s">"ERROR"</span>)
     api.SetOutputs(os.StdOut, log.Ltime, <span class="s">"INFO"</span>, <span class="s">"DEBUG"</span>, <span class="s">"WARN"</span>) 
-    api := NewAPI()
     api.Post(<span class="s">"^/comment/(?P&lt;id&gt;\\d+)$"</span>, comment) 
-    api.Set(<span class="k">LoggingFilter</span>)
     pastis.Start(2333)
 }						   	
 						   </code>
