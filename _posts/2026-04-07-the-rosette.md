@@ -8,7 +8,9 @@ This weekend I was with my father. He's retired now. He spent his career in cons
 
 For the first time, I talked to him about AI. Having worked at Spotify, I told him how agents are gradually starting to replace our coding tasks. He quickly interrupted me:
 
-> "Yes, just like my craftsmen who used to complain that machines could never make a rosette."
+> "Yes, just like my craftsmen who used to complain that machines could never make a [rosette](https://en.wikipedia.org/wiki/Rosette_(design))."
+
+![Rosettes — from A Handbook of Ornament, 1898](/assets/images/rosetten.png)
 
 I have to admit, it completely stunned me — because I was about to use the very example of workers and the great replacement by machines. But his rosette example perfectly illustrates what some of my colleagues say about AI. They complain about the errors, the hallucinations, the rough edges.
 
