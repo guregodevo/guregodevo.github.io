@@ -5,6 +5,6 @@ title: About
 
 # About
 
-**Haiku** — short thoughts, briefly told.
+I'm Gregory Desvaux. Former engineer at Spotify, now working independently on LLM Wiki and other AI projects.
 
-A blog for ideas that don't need a thousand words.
+**Haiku** — short thoughts, briefly told. A blog for ideas that don't need a thousand words.
