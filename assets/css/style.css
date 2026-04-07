@@ -129,6 +129,14 @@ h2 {
   color: inherit;
 }
 
+.post-content img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 1.5rem 0;
+}
+
 .page-description {
   color: var(--muted);
   margin-bottom: 2.5rem;
