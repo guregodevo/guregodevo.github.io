@@ -1,0 +1,20 @@
+title: Haiku
+description: Short thoughts, briefly told.
+author: guregodevo
+url: "https://guregodevo.github.io"
+baseurl: ""
+
+permalink: /:year/:month/:day/:title/
+
+markdown: kramdown
+highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+exclude:
+  - pastis
+  - .project
+  - Gemfile
+  - Gemfile.lock

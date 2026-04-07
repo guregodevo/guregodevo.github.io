@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<p class="page-description">{{ site.description }}</p>
+
+<ul class="post-list">
+  {% for post in site.posts %}
+  <li>
+    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    {% if post.excerpt %}
+    <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
