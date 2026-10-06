@@ -65,4 +65,4 @@ Skills are not wrong; they are the wrong unit for the shape of a day's work. Ins
 
 That is the whole position. Describe a procedure in prose and you get a procedure the model might follow. Describe it as a graph with targets and you get a run that either happened or did not, that you can resume, and that stops to ask you at the one place where your judgment is the point.
 
-Memdoor is open source: [github.com/guregodevo/memdoor-oss](https://github.com/guregodevo/memdoor-oss). The engine is [mario](https://github.com/guregodevo/mario). The recording of the release workflow, gate and all, is on [memdoor.ai](https://memdoor.ai).
+Memdoor is open source: [github.com/guregodevo/memdoor](https://github.com/guregodevo/memdoor). The engine is [mario](https://github.com/guregodevo/mario). The recording of the release workflow, gate and all, is on [memdoor.ai](https://memdoor.ai).
