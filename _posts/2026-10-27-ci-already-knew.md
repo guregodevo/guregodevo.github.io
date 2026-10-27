@@ -8,7 +8,7 @@ date: 2026-10-27
 > The exit code says it's done.<br>
 > Red means it is not.
 
-![A workflow drawn as a river: the streams diff and tests meet in the pool of review, pass under the gate of verdict, and reach the sea, exit 0.](/assets/images/ci-already-knew.svg)
+![When I ship to prod: I run a Memdoor workflow. vet, tests, review pass, approve waits for me, deploy, exit 0.](/assets/images/ship-to-prod.gif)
 
 CI never believed anyone. It believes an exit code. So now [Memdoor](https://memdoor.ai) runs as one step of a GitHub job, on your own key:
 
