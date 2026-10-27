@@ -13,7 +13,7 @@ date: 2026-10-27
 CI never believed anyone. It believes an exit code. So now [Memdoor](https://memdoor.ai) runs as one step of a GitHub job, on your own key:
 
 ```yaml
-- uses: guregodevo/memdoor@v1
+- uses: guregodevo/memdoor-action@v1
   with:
     workflow: pr-review
     openrouter-api-key: ${{ secrets.OPEN_ROUTER_API_KEY }}
