@@ -25,4 +25,4 @@ CI never believed anyone. It believes an exit code. So now [Memdoor](https://mem
 
 The model writes. The exit code decides.
 
-[Memdoor](https://memdoor.ai) · [GitHub](https://github.com/guregodevo/memdoor) · [Marketplace](https://github.com/marketplace/actions/memdoor-workflow)
+[Memdoor](https://memdoor.ai) · [GitHub](https://github.com/guregodevo/memdoor) · [Marketplace](https://github.com/marketplace/actions/memdoor)
