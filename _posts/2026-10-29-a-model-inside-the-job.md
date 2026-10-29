@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A model inside the job"
+title: "A local model inside my GitHub CI job"
 date: 2026-10-29
 ---
 
