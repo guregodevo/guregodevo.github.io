@@ -33,6 +33,8 @@ Three changes made it work:
 - **A runtime on your own machine may be slow.** A keyless provider (Ollama, llama.cpp) gets ten minutes of silence before the watchdog gives up, not sixty seconds. A remote API that goes quiet for a minute is still dead.
 - **A cut-off answer is not a review.** The 4B wrote for ten minutes, the clock cut it, and the half-written text passed as the review. Now an answer stopped by its clock fails the step.
 
+^
+
 Then the 9B caught a planted off-by-one as a must-not-merge finding in 54 seconds.
 
 ## Then I measured it against a key
