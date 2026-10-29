@@ -64,6 +64,8 @@ So the model stopped judging. The verdict is now [made from what the job measure
 - **Functions nothing calls**: each function the PR adds, looked up in the code.
 - **The title**: the one question the 8B gets right.
 
+^
+
 The model writes the summary, what is missing, and the likely duplicates. On a key, an agent opens the files to check each claim of the description, and its answer counts too.
 
 | Pull request | Local, 3 runs | Key |
