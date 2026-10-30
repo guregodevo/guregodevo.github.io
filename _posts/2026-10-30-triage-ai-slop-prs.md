@@ -26,6 +26,10 @@ So the question I asked was not *how good can the reviewer be*. It was *what if 
 
 ```yaml
 on: pull_request
+permissions:
+  contents: read
+  pull-requests: read
+  issues: read
 jobs:
   triage:
     runs-on: ubuntu-latest
