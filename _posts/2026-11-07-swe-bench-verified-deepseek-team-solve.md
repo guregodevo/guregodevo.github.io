@@ -9,32 +9,33 @@ date: 2026-11-07
 
 After I posted [a team of five Qwen3.8-27B models against Fable 5 on LiveCodeBench Hard](https://news.ycombinator.com/item?id=50320995) on Hacker News, I got a few pieces of feedback. The main one was that I should show the results on real tasks. The second was that ten problems are not enough, and I should run around a thousand so the results are significant.
 
-So this time it is real GitHub issues: all 500 of [SWE-bench Verified](https://www.swebench.com), each one both ways, 1,000 runs. DeepSeek is one of the most popular models on OpenRouter, so I tried DeepSeek V4.1 Flash with [team-solve](https://github.com/guregodevo/memdoor/tree/main/workflows/team-solve), now built into [Memdoor](https://github.com/guregodevo/memdoor)'s coding agent as team mode. Same coding agent and the same team-solve workflow; a different benchmark and a different model. The baseline is one agent turn on the same model.
+So this time it is real GitHub issues: all 500 of [SWE-bench Verified](https://www.swebench.com), each one both ways, 1,000 runs. DeepSeek is one of the most popular models on OpenRouter, so I tried DeepSeek V4.1 Flash with [team-solve](https://github.com/guregodevo/memdoor/tree/main/workflows/team-solve), now built into [Memdoor](https://github.com/guregodevo/memdoor)'s coding agent as team mode. Same coding agent and the same team-solve workflow; a different benchmark and a different model. The baseline is a single call: one agent turn on the same model.
 
 I did not expect a model like DeepSeek to gain much over a single call. The point was to measure what the harness adds and what it costs. Every prediction, test log and trace is in [guregodevo/swe-bench](https://github.com/guregodevo/swe-bench).
 
 | | resolved | $ per issue | median time |
 |---|---|---|---|
-| one agent turn | 388 / 500 (77.6%) | 0.012 | 91 s |
+| single call | 388 / 500 (77.6%) | 0.012 | 91 s |
 | team-solve | **400** / 500 (80.0%) | 0.022 | 258 s |
-| team-solve's first try | 385 / 500 (77.0%) | | |
 
-The team never made its first try worse. It changed that patch on 63 issues. 15 went from failing to passing and none went the other way. Team mode cost twice as much and never lost a fix.
+team-solve resolved 12 more issues than the single call, at twice the cost.
 
 ## The data
 
-Against its own first try and against a separate single turn:
+Issue by issue:
 
-| team-solve against | gained | lost | p |
-|---|---|---|---|
-| its first try | 15 | 0 | 0.00006 |
-| one agent turn | 27 | 15 | 0.09 |
+| | issues |
+|---|---|
+| both resolved | 373 |
+| only team-solve | 27 |
+| only the single call | 15 |
+| neither | 85 |
 
-Both arms resolved 373, neither resolved 85.
+27 against 15 is p = 0.09.
 
 By repository:
 
-| repository | issues | one turn | team-solve |
+| repository | issues | single call | team-solve |
 |---|---|---|---|
 | django | 231 | 183 | 195 |
 | sympy | 75 | 58 | 60 |
@@ -51,7 +52,7 @@ By repository:
 
 By SWE-bench's own difficulty label:
 
-| difficulty | issues | one turn | team-solve |
+| difficulty | issues | single call | team-solve |
 |---|---|---|---|
 | under 15 min | 194 | 166 | 173 |
 | 15 min to 1 hour | 261 | 199 | 204 |
@@ -60,7 +61,7 @@ By SWE-bench's own difficulty label:
 
 By the year the issue was filed:
 
-| year | issues | one turn | team-solve |
+| year | issues | single call | team-solve |
 |---|---|---|---|
 | 2013–2016 | 8 | 3 | 3 |
 | 2017 | 16 | 15 | 15 |
@@ -75,7 +76,7 @@ By the year the issue was filed:
 
 From OpenRouter's own charge on each call, over the 1,000 runs that count:
 
-| | one agent turn | team-solve |
+| | single call | team-solve |
 |---|---|---|
 | total for the 500 issues | $6.01 | $10.84 |
 | per issue, mean | $0.012 | $0.022 |
@@ -107,11 +108,11 @@ PASS -- the entry matches its artifacts.
 
 `verify` grades every issue again from its recorded test output. The 7 issues it skips have an empty patch.
 
-One issue both the single turn and the first try failed, and the team fixed:
+One issue the single call failed and team-solve fixed:
 
 ```
-$ grep -m1 '^kept:' $d/trajs/django__django-12406.md
-kept: the team's work (check 0, judge PASS; the direct attempt's check was 1)
+$ jq '."django__django-12406".resolved' 20261106_memdoor_deepseek-v4.1-flash/logs/django__django-12406/report.json
+false
 $ jq '."django__django-12406".resolved' $d/logs/django__django-12406/report.json
 true
 ```
