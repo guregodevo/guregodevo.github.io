@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "What a team adds to one call: 400 of 500 SWE-bench Verified issues at two cents each"
+title: "SWE-bench Verified: DeepSeek V4.1 Flash with team-solve, 400 of 500 at two cents an issue"
 date: 2026-11-07
 ---
 
