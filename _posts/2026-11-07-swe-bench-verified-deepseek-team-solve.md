@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "What I learned running SWE-bench on the team-solve harness"
+title: "What I learned running SWE-bench with team-solve on DeepSeek V4.1 Flash"
 date: 2026-11-07
 ---
 
