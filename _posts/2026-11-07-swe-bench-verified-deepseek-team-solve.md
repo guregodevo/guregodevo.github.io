@@ -4,9 +4,8 @@ title: "SWE-bench Verified: DeepSeek V4.1 Flash with team-solve, 400 of 500 at t
 date: 2026-11-07
 ---
 
-> One try, then a check.<br>
-> When it fails, the team steps in.<br>
-> Nothing it touched broke.
+> It's the journey.<br>
+> The start and end are spirit creations.
 
 After I posted [a team of five Qwen3.8-27B models against Fable 5 on LiveCodeBench Hard](https://news.ycombinator.com/item?id=50320995) on Hacker News, I got a few pieces of feedback. The main one was that I should show the results on real tasks. The second was that ten problems are not enough, and I should run around a thousand so the results are significant.
 
