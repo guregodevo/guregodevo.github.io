@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "What I learned running SWE-bench on my coding agent, Memdoor"
+title: "What I learned running SWE-bench on the team-solve harness"
 date: 2026-11-07
 ---
 
