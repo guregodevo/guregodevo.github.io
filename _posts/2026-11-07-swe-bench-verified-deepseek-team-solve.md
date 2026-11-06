@@ -18,7 +18,7 @@ I did not expect a model like DeepSeek to gain much over a single call. The poin
 | single call | 388 / 500 (77.6%) | 0.012 | 91 s |
 | team-solve | **400** / 500 (80.0%) | 0.022 | 258 s |
 
-**The takeaway: +2.4 points (77.6% → 80.0%) for one cent more per task ($0.022 instead of $0.012) on a Flash model.** That is 12 more issues out of 500.
+**The takeaway: +3.1% resolved for one cent more per task ($0.022 instead of $0.012) on a Flash model.** That is 12 more issues out of 500, from 77.6% to 80.0%.
 
 ## The data
 
