@@ -8,7 +8,11 @@ date: 2026-11-07
 > When it fails, the team steps in.<br>
 > Nothing it touched broke.
 
-I ran [team-solve](https://github.com/guregodevo/memdoor/tree/main/workflows/team-solve), the workflow behind [Memdoor](https://github.com/guregodevo/memdoor)'s team mode, on all 500 issues of [SWE-bench Verified](https://www.swebench.com). The baseline is one agent turn on the same model, DeepSeek V4.1 Flash. Every prediction, test log and trace is in [guregodevo/swe-bench](https://github.com/guregodevo/swe-bench).
+After I posted [a team of five Qwen3.8-27B models against Fable 5 on LiveCodeBench Hard](https://news.ycombinator.com/item?id=50320995) on Hacker News, I got a few pieces of feedback. The main one was that I should show the results on real tasks. The second was that ten problems are not enough, and I should run around a thousand so the results are significant.
+
+So this time it is real GitHub issues: all 500 of [SWE-bench Verified](https://www.swebench.com), each one both ways, 1,000 runs. DeepSeek is one of the most popular models on OpenRouter, so I tried DeepSeek V4.1 Flash with [team-solve](https://github.com/guregodevo/memdoor/tree/main/workflows/team-solve), now built into [Memdoor](https://github.com/guregodevo/memdoor)'s coding agent as team mode. Same coding agent and the same team-solve workflow; a different benchmark and a different model. The baseline is one agent turn on the same model.
+
+I did not expect a model like DeepSeek to gain much over a single call. The point was to measure what the harness adds and what it costs. Every prediction, test log and trace is in [guregodevo/swe-bench](https://github.com/guregodevo/swe-bench).
 
 | | resolved | $ per issue | median time |
 |---|---|---|---|
