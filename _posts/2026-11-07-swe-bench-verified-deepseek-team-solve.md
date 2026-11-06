@@ -72,7 +72,26 @@ By the year the issue was filed:
 | 2022 | 102 | 81 | 83 |
 | 2023 | 58 | 43 | 43 |
 
-Cost, from OpenRouter's own figure on each call: $6.01 for the 500 single turns, $10.84 for the 500 team runs.
+## The cost
+
+From OpenRouter's own charge on each call, over the 1,000 runs that count:
+
+| | one agent turn | team-solve |
+|---|---|---|
+| total for the 500 issues | $6.01 | $10.84 |
+| per issue, mean | $0.012 | $0.022 |
+| per issue, median | $0.004 | $0.012 |
+| per issue, 90th percentile | $0.038 | $0.053 |
+| most expensive issue | $0.12 | $0.27 |
+| per resolved issue | $0.016 | $0.027 |
+| model calls per issue | 28 | 36 |
+| input tokens | 296 M, 88% cached | 405 M, 86% cached |
+| output tokens | 10.4 M | 20.3 M |
+| time per issue, median | 1.5 min | 4.3 min |
+| time per issue, 90th percentile | 15 min | 27 min |
+| longest issue | 32 min | 2 h |
+
+The 12 extra issues team-solve resolved cost $4.83 more, about $0.40 each. Most of the input is the same context sent again, and OpenRouter bills cached tokens at a fraction of the price.
 
 ## Check it
 
