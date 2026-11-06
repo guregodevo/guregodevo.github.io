@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "SWE-bench Verified: DeepSeek V4.1 Flash with team-solve, 400 of 500 at 2¢ each"
+title: "What I learned running SWE-bench on my coding agent, Memdoor"
 date: 2026-11-07
 ---
 
