@@ -72,7 +72,26 @@ By the year the issue was filed:
 | 2022 | 102 | 81 | 83 |
 | 2023 | 58 | 43 | 43 |
 
-Cost, from OpenRouter's own figure on each call: $6.01 for the 500 single turns, $10.84 for the 500 team runs.
+## The cost
+
+From OpenRouter's own charge on each call, over the 1,000 runs that count:
+
+| | one agent turn | team-solve |
+|---|---|---|
+| total for the 500 issues | $6.01 | $10.84 |
+| per issue, mean | $0.012 | $0.022 |
+| per issue, median | $0.004 | $0.012 |
+| per issue, 90th percentile | $0.038 | $0.053 |
+| most expensive issue | $0.12 | $0.27 |
+| per resolved issue | $0.016 | $0.027 |
+| model calls per issue | 28 | 36 |
+| input tokens | 296 M, 88% cached | 405 M, 86% cached |
+| output tokens | 10.4 M | 20.3 M |
+| time per issue, median | 1.5 min | 4.3 min |
+| time per issue, 90th percentile | 15 min | 27 min |
+| longest issue | 32 min | 2 h |
+
+The 12 extra issues team-solve resolved cost $4.83 more, about $0.40 each. Most of the input is the same context sent again, and OpenRouter bills cached tokens at a fraction of the price.
 
 ## Check it
 
@@ -120,5 +139,11 @@ memdoor workflow run team-solve "Fix the failing date parser test; go test ./...
 It is not on the leaderboard. SWE-bench Verified takes submissions only from academic teams and research labs since November 2025. team-solve was tuned on ten Verified issues; without them the scores are 77.8% and 80.2%. Each issue ran once. Fable 5 is about 95%.
 
 In the first run, OpenRouter's web search reached upstream fixes on 126 issues. Those 126 ran again with the web tools removed. The [run's README](https://github.com/guregodevo/swe-bench#what-went-wrong-and-what-was-run-again) has the details.
+
+## What is next
+
+What motivated me to build a coding agent like Memdoor is the harness. I have always believed that context engineering and a bit of DAG orchestration would make a better harness. [OpenClaw](https://github.com/openclaw/openclaw) paved the way with its multi-agent architecture. [Pi](https://github.com/earendil-works/pi) and other coding agents add layers of their own, but there is still room for improvement when it comes to complex DAGs of tasks. That is why I started to build an orchestrator, [mario](https://github.com/guregodevo/mario), and then decided to build a coding agent with it.
+
+team-solve still needs to be ironed out, but it already works with small models. This benchmark on a Flash model is more evidence that a better harness can take a cheaper model closer to the frontier ones. That is the journey I want to share with the community.
 
 [guregodevo/swe-bench](https://github.com/guregodevo/swe-bench) · [Results in Memdoor](https://github.com/guregodevo/memdoor/tree/main/examples/workflows/team-solve/bench/memdoor-swe-bench) · [team-solve](https://github.com/guregodevo/memdoor/tree/main/workflows/team-solve) · [Team mode](https://memdoor.ai/docs/team-mode) · [Memdoor](https://memdoor.ai)

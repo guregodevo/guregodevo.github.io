@@ -4,6 +4,9 @@
   --muted: #78716c;
   --accent: #292524;
   --border: #e7e5e4;
+  --stripe: #f5f5f4;
+  --link: #1d4ed8;
+  --link-hover: #1e3a8a;
   --max-width: 640px;
 }
 
@@ -99,6 +102,65 @@ h2 {
   margin-bottom: 1.2rem;
 }
 
+.post-content a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.post-content a:hover {
+  color: var(--link-hover);
+  text-decoration-thickness: 2px;
+}
+
+.post-content ul,
+.post-content ol {
+  padding-left: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.post-content li {
+  margin-bottom: 0.3rem;
+}
+
+/* Tables scroll sideways on a narrow screen instead of squeezing the columns. */
+.post-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.post-content th,
+.post-content td {
+  padding: 0.45rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.post-content thead th {
+  border-bottom: 2px solid var(--muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.post-content tbody tr:nth-child(even) {
+  background: var(--stripe);
+}
+
+/* Numbers line up: every column after the first is right-aligned, in tabular figures. */
+.post-content th:not(:first-child),
+.post-content td:not(:first-child) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
 .post-content blockquote {
   border-left: 3px solid var(--border);
   padding-left: 1rem;
@@ -149,4 +211,16 @@ footer {
   border-top: 1px solid var(--border);
   color: var(--muted);
   font-size: 0.8rem;
+}
+
+@media (max-width: 520px) {
+  .post-content table {
+    font-size: 0.8rem;
+  }
+
+  .post-content th,
+  .post-content td {
+    padding: 0.4rem 0.45rem;
+    white-space: nowrap;
+  }
 }
