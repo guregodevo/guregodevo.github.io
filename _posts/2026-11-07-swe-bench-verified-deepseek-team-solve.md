@@ -140,4 +140,10 @@ It is not on the leaderboard. SWE-bench Verified takes submissions only from aca
 
 In the first run, OpenRouter's web search reached upstream fixes on 126 issues. Those 126 ran again with the web tools removed. The [run's README](https://github.com/guregodevo/swe-bench#what-went-wrong-and-what-was-run-again) has the details.
 
+## What is next
+
+What motivated me to build a coding agent like Memdoor is the harness. I have always believed that context engineering and a bit of DAG orchestration would make a better harness. [OpenClaw](https://github.com/openclaw/openclaw) paved the way with its multi-agent architecture. [Pi](https://github.com/earendil-works/pi) and other coding agents add layers of their own, but there is still room for improvement when it comes to complex DAGs of tasks. That is why I started to build an orchestrator, [mario](https://github.com/guregodevo/mario), and then decided to build a coding agent with it.
+
+team-solve still needs to be ironed out, but it already works with small models. This benchmark on a Flash model is more evidence that a better harness can take a cheaper model closer to the frontier ones. That is the journey I want to share with the community.
+
 [guregodevo/swe-bench](https://github.com/guregodevo/swe-bench) · [Results in Memdoor](https://github.com/guregodevo/memdoor/tree/main/examples/workflows/team-solve/bench/memdoor-swe-bench) · [team-solve](https://github.com/guregodevo/memdoor/tree/main/workflows/team-solve) · [Team mode](https://memdoor.ai/docs/team-mode) · [Memdoor](https://memdoor.ai)
