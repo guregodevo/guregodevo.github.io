@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "What I learned running SWE-bench with team-solve on DeepSeek V4.1 Flash"
+title: "What I learned running SWE-bench with a team of DeepSeek V4.1 Flash agents"
 date: 2026-11-07
 ---
 
