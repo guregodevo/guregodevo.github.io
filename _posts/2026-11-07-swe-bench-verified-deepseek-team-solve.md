@@ -20,6 +20,8 @@ I did not expect a model like DeepSeek to gain much over a single call. The poin
 
 **The takeaway: +3.1% resolved for one cent more per task ($0.022 instead of $0.012) on a Flash model.** That is 12 more issues out of 500, from 77.6% to 80.0%.
 
+**On Django, the largest project in the benchmark, the gain is +6.6%: 195 of 231 issues instead of 183.** team-solve fixed 15 Django issues the single call missed and lost 3 (p = 0.008).
+
 ## The data
 
 Issue by issue:
