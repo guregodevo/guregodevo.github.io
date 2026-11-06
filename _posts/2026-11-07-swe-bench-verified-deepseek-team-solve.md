@@ -22,6 +22,13 @@ I did not expect a model like DeepSeek to gain much over a single call. The poin
 
 **On Django, the largest project in the benchmark, the gain is +6.6%: 195 of 231 issues instead of 183.** team-solve fixed 15 Django issues the single call missed and lost 3 (p = 0.008).
 
+| | issues | only team-solve | only the single call | net |
+|---|---|---|---|---|
+| Django | 231 | 15 | 3 | **+12** |
+| all other projects | 269 | 12 | 12 | 0 |
+
+team-solve decides when the team steps in by running the project's own tests. Django's test suite is large and catches a wrong fix, so the team steps in where it should. In the other projects the tests catch less.
+
 ## The data
 
 Issue by issue:
