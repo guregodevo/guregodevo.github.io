@@ -18,16 +18,18 @@ I did not expect a model like DeepSeek to gain much over a single call. The poin
 | single call | 388 / 500 (77.6%) | 0.012 | 91 s |
 | team-solve | **400** / 500 (80.0%) | 0.022 | 258 s |
 
-**The takeaway: +3.1% resolved for one cent more per task ($0.022 instead of $0.012) on a Flash model.** That is 12 more issues out of 500, from 77.6% to 80.0%.
+**The takeaway: 3.1% more issues resolved for one cent more per task ($0.022 instead of $0.012) on a Flash model.** That is 400 issues instead of 388, from 77.6% to 80.0%.
 
-**On Django, the largest project in the benchmark, the gain is +6.6%: 195 of 231 issues instead of 183.** team-solve fixed 15 Django issues the single call missed and lost 3 (p = 0.008).
+**On the 324 issues I never looked at while building team-solve, the gain is 2 issues: 255 against 253, 78.7% against 78.1%.** Before this run I ran pilots on 172 Verified issues and changed team-solve after watching them: the step that keeps a first attempt the team cannot beat, how a check that already fails is counted, a crash on non-ASCII prompts. The fixes are general, but they were made on those issues, and that is where most of the gain is.
 
-| | issues | only team-solve | only the single call | net |
-|---|---|---|---|---|
-| Django | 231 | 15 | 3 | **+12** |
-| all other projects | 269 | 12 | 12 | 0 |
+| | issues | single call | team-solve | only team-solve | only the single call | p |
+|---|---|---|---|---|---|---|
+| seen while building team-solve | 176 | 135 (76.7%) | 145 (82.4%) | 14 | 4 | 0.03 |
+| never seen | 324 | 253 (78.1%) | 255 (78.7%) | 13 | 11 | 0.84 |
+| Django | 231 | 183 (79.2%) | 195 (84.4%) | 15 | 3 | 0.008 |
+| other projects | 269 | 205 (76.2%) | 205 (76.2%) | 12 | 12 | 1.0 |
 
-team-solve decides when the team steps in by running the project's own tests. Django's test suite is large and catches a wrong fix, so the team steps in where it should. In the other projects the tests catch less.
+The pilots ran the issues mostly in the dataset's order, so 168 of the 176 are among its first 176: all 22 astropy issues, 153 of Django's 231 and one sympy issue in all. The two splits overlap. The [list of the 176](https://github.com/guregodevo/swe-bench/blob/main/kit/seen-ids.txt) is in the run's repository.
 
 ## The data
 
@@ -145,7 +147,7 @@ memdoor workflow run team-solve "Fix the failing date parser test; go test ./...
 
 ## What it is not
 
-It is not on the leaderboard. SWE-bench Verified takes submissions only from academic teams and research labs since November 2025. team-solve was tuned on ten Verified issues; without them the scores are 77.8% and 80.2%. Each issue ran once. Fable 5 is about 95%.
+It is not on the leaderboard. SWE-bench Verified takes submissions only from academic teams and research labs since November 2025. team-solve was built while watching 176 of these issues, split out above. Each issue ran once. Fable 5 is about 95%.
 
 In the first run, OpenRouter's web search reached upstream fixes on 126 issues. Those 126 ran again with the web tools removed. The [run's README](https://github.com/guregodevo/swe-bench#what-went-wrong-and-what-was-run-again) has the details.
 
