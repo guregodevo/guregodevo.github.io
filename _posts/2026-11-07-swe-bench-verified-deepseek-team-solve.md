@@ -21,9 +21,9 @@ I did not expect a model like DeepSeek to gain much over a single call. The poin
 
 **The takeaway: 3.1% more issues resolved for one cent more per task ($0.022 instead of $0.012) on a Flash model.** That is 400 issues instead of 388, from 77.6% to 80.0%.
 
-**team-solve starts with its own single call and keeps it unless the team does better. It never lost an issue that single call had solved: 7 gained, 0 lost (p = 0.016). On the 324 issues I never looked at while building team-solve, 5 gained and 0 lost.**
+**team-solve never lost an issue its own single call had solved. It gained 7 and lost 0 (p = 0.016).** On the 324 issues I never looked at while building it, it gained 5 and lost 0.
 
-The baseline is a separate single call, and the same model does not solve the same issue the same way twice: the baseline and team-solve's own single call disagree on 47 issues. That noise makes the comparison with the baseline weaker:
+team-solve starts with its own single call and keeps it unless the team does better. The baseline is a separate single call, and the two disagree on 47 issues, so the comparison with the baseline is noisier:
 
 | | issues | team-solve against its own single call | p | team-solve against the baseline | p |
 |---|---|---|---|---|---|
@@ -31,19 +31,19 @@ The baseline is a separate single call, and the same model does not solve the sa
 | seen while building team-solve | 176 | 2 gained, 0 lost | 0.5 | 14 gained, 4 lost | 0.03 |
 | never seen | 324 | 5 gained, 0 lost | 0.06 | 13 gained, 11 lost | 0.84 |
 
-Before this run I ran pilots on 172 Verified issues and changed team-solve after watching them: the step that keeps a single call the team cannot beat, how a check that already fails is counted, a crash on non-ASCII prompts. With the ten its README names, that is 176 issues, mostly the first in the dataset's order ([the list](https://github.com/guregodevo/swe-bench/blob/main/kit/seen-ids.txt)).
+Before this run I ran pilots on 172 Verified issues and changed team-solve after watching them. With the ten its README names, that is 176 issues, most of them the first in the dataset's order ([the list](https://github.com/guregodevo/swe-bench/blob/main/kit/seen-ids.txt)).
 
 ## When the single call fails
 
-team-solve's own single call failed on 107 issues. What happened next:
+team-solve's own single call failed on 107 issues.
 
 | the single call's patch | issues | team-solve fixed |
 |---|---|---|
-| failed its check, so the team's agents took over | 29 | 7 |
-| wrong, but its check passed, so the team never ran | 69 | 0 |
-| unfinished: the single call ran past its 30-minute limit and the run stopped there | 9 | 0 |
+| failed its check, the team took over | 29 | 7 |
+| passed its check but was wrong, the team never ran | 69 | 0 |
+| unfinished after 30 minutes, the run stopped | 9 | 0 |
 
-The team fixes 7 of the 29 it works on, 5 of 21 on the issues I never looked at. The 69 are the gap: the project's own tests passed a wrong fix, because SWE-bench grades with tests written for the fix, and the team never saw them. The 9 are a bug: a single call that runs out of time should hand over to the team, not end the run. Both are filed, with every issue id: [#150](https://github.com/guregodevo/memdoor/issues/150), [#151](https://github.com/guregodevo/memdoor/issues/151), [#152](https://github.com/guregodevo/memdoor/issues/152).
+The team fixed 7 of the 29 it worked on, and 5 of 21 on the issues I never looked at. In the 69, the project's own tests passed a wrong fix and the team never ran. SWE-bench grades with tests written for the fix. In the 9, the single call ran out of time and the run ended instead of handing over to the team. Each case is filed with its issue ids: [#150](https://github.com/guregodevo/memdoor/issues/150), [#151](https://github.com/guregodevo/memdoor/issues/151), [#152](https://github.com/guregodevo/memdoor/issues/152).
 
 ## The data
 
@@ -56,7 +56,7 @@ Issue by issue:
 | only the single call | 15 |
 | neither | 85 |
 
-27 against 15 is p = 0.09. On every one of the 15, team-solve's own single call failed too: the baseline's separate run was right where team-solve's was not.
+27 against 15 is p = 0.09. On all 15, team-solve's own single call failed too.
 
 By repository:
 
@@ -116,7 +116,7 @@ From OpenRouter's own charge on each call, over the 1,000 runs that count:
 | time per issue, 90th percentile | 15 min | 27 min |
 | longest issue | 32 min | 2 h |
 
-The 12 extra issues team-solve resolved cost $4.83 more, about $0.40 each. Most of the input is the same context sent again, and OpenRouter bills cached tokens at a fraction of the price.
+The 12 extra issues team-solve resolved cost $4.83 more, about $0.40 each. Most of the input is context sent again, which OpenRouter bills at the cached price.
 
 ## Check it
 
