@@ -15,21 +15,23 @@ I did not expect a model like DeepSeek to gain much over a single call. The poin
 
 | | resolved | $ per issue | median time |
 |---|---|---|---|
-| single call | 388 / 500 (77.6%) | 0.012 | 91 s |
+| single call (the baseline, a separate run) | 388 / 500 (77.6%) | 0.012 | 91 s |
 | team-solve | **400** / 500 (80.0%) | 0.022 | 258 s |
+| team-solve's own single call (its first step) | 385 / 500 (77.0%) | | |
 
 **The takeaway: 3.1% more issues resolved for one cent more per task ($0.022 instead of $0.012) on a Flash model.** That is 400 issues instead of 388, from 77.6% to 80.0%.
 
-**On the 324 issues I never looked at while building team-solve, the gain is 2 issues: 255 against 253, 78.7% against 78.1%.** Before this run I ran pilots on 172 Verified issues and changed team-solve after watching them: the step that keeps a first attempt the team cannot beat, how a check that already fails is counted, a crash on non-ASCII prompts. The fixes are general, but they were made on those issues, and that is where most of the gain is.
+**team-solve starts with its own single call and keeps it unless the team does better. It never lost an issue that single call had solved: 15 gained, 0 lost. On the 324 issues I never looked at while building team-solve, that is 11 gained and 0 lost (p = 0.001).**
 
-| | issues | single call | team-solve | only team-solve | only the single call | p |
-|---|---|---|---|---|---|---|
-| seen while building team-solve | 176 | 135 (76.7%) | 145 (82.4%) | 14 | 4 | 0.03 |
-| never seen | 324 | 253 (78.1%) | 255 (78.7%) | 13 | 11 | 0.84 |
-| Django | 231 | 183 (79.2%) | 195 (84.4%) | 15 | 3 | 0.008 |
-| other projects | 269 | 205 (76.2%) | 205 (76.2%) | 12 | 12 | 1.0 |
+The baseline is a separate single call, and the same model does not solve the same issue the same way twice: the baseline and team-solve's own single call disagree on 53 issues. That noise makes the comparison with the baseline weaker:
 
-The pilots ran the issues mostly in the dataset's order, so 168 of the 176 are among its first 176: all 22 astropy issues, 153 of Django's 231 and one sympy issue in all. The two splits overlap. The [list of the 176](https://github.com/guregodevo/swe-bench/blob/main/kit/seen-ids.txt) is in the run's repository.
+| | issues | team-solve against its own single call | p | team-solve against the baseline | p |
+|---|---|---|---|---|---|
+| all | 500 | 15 gained, 0 lost | 0.00006 | 27 gained, 15 lost | 0.09 |
+| seen while building team-solve | 176 | 4 gained, 0 lost | 0.13 | 14 gained, 4 lost | 0.03 |
+| never seen | 324 | 11 gained, 0 lost | 0.001 | 13 gained, 11 lost | 0.84 |
+
+Before this run I ran pilots on 172 Verified issues and changed team-solve after watching them: the step that keeps a single call the team cannot beat, how a check that already fails is counted, a crash on non-ASCII prompts. With the ten its README names, that is 176 issues, mostly the first in the dataset's order ([the list](https://github.com/guregodevo/swe-bench/blob/main/kit/seen-ids.txt)).
 
 ## The data
 
@@ -42,7 +44,7 @@ Issue by issue:
 | only the single call | 15 |
 | neither | 85 |
 
-27 against 15 is p = 0.09.
+27 against 15 is p = 0.09. On every one of the 15, team-solve's own single call failed too: the baseline's separate run was right where team-solve's was not.
 
 By repository:
 
