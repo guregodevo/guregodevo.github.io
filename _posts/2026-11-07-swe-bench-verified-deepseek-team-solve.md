@@ -17,33 +17,33 @@ I did not expect a model like DeepSeek to gain much over a single call. The poin
 |---|---|---|---|
 | single call (the baseline, a separate run) | 388 / 500 (77.6%) | 0.012 | 91 s |
 | team-solve | **400** / 500 (80.0%) | 0.022 | 258 s |
-| team-solve's own single call (its first step) | 385 / 500 (77.0%) | | |
+| team-solve's own single call (its first step) | 393 / 500 (78.6%) | | |
 
 **The takeaway: 3.1% more issues resolved for one cent more per task ($0.022 instead of $0.012) on a Flash model.** That is 400 issues instead of 388, from 77.6% to 80.0%.
 
-**team-solve starts with its own single call and keeps it unless the team does better. It never lost an issue that single call had solved: 15 gained, 0 lost. On the 324 issues I never looked at while building team-solve, that is 11 gained and 0 lost (p = 0.001).**
+**team-solve starts with its own single call and keeps it unless the team does better. It never lost an issue that single call had solved: 7 gained, 0 lost (p = 0.016). On the 324 issues I never looked at while building team-solve, 5 gained and 0 lost.**
 
-The baseline is a separate single call, and the same model does not solve the same issue the same way twice: the baseline and team-solve's own single call disagree on 53 issues. That noise makes the comparison with the baseline weaker:
+The baseline is a separate single call, and the same model does not solve the same issue the same way twice: the baseline and team-solve's own single call disagree on 47 issues. That noise makes the comparison with the baseline weaker:
 
 | | issues | team-solve against its own single call | p | team-solve against the baseline | p |
 |---|---|---|---|---|---|
-| all | 500 | 15 gained, 0 lost | 0.00006 | 27 gained, 15 lost | 0.09 |
-| seen while building team-solve | 176 | 4 gained, 0 lost | 0.13 | 14 gained, 4 lost | 0.03 |
-| never seen | 324 | 11 gained, 0 lost | 0.001 | 13 gained, 11 lost | 0.84 |
+| all | 500 | 7 gained, 0 lost | 0.016 | 27 gained, 15 lost | 0.09 |
+| seen while building team-solve | 176 | 2 gained, 0 lost | 0.5 | 14 gained, 4 lost | 0.03 |
+| never seen | 324 | 5 gained, 0 lost | 0.06 | 13 gained, 11 lost | 0.84 |
 
 Before this run I ran pilots on 172 Verified issues and changed team-solve after watching them: the step that keeps a single call the team cannot beat, how a check that already fails is counted, a crash on non-ASCII prompts. With the ten its README names, that is 176 issues, mostly the first in the dataset's order ([the list](https://github.com/guregodevo/swe-bench/blob/main/kit/seen-ids.txt)).
 
 ## When the single call fails
 
-team-solve's own single call failed on 115 issues. What it had produced, and what the team did with it:
+team-solve's own single call failed on 107 issues. What happened next:
 
-| the single call left | issues | team-solve fixed |
+| the single call's patch | issues | team-solve fixed |
 |---|---|---|
-| no patch | 29 | 13 (45%) |
-| a patch its check failed | 4 | 2 (50%) |
-| a wrong patch its check passed | 82 | 0 |
+| failed its check, so the team's agents took over | 29 | 7 |
+| wrong, but its check passed, so the team never ran | 69 | 0 |
+| unfinished: the single call ran past its 30-minute limit and the run stopped there | 9 | 0 |
 
-When the team gets to work, it fixes nearly half: 15 of 33, and 11 of 26 on the issues I never looked at. It got to work on 33 of the 115. The other 82 passed the project's own tests and were still wrong, because SWE-bench grades with tests written for the fix. The team never saw them. A check that proves the bug, a test that fails before the change and passes after, is where the next points are.
+The team fixes 7 of the 29 it works on, 5 of 21 on the issues I never looked at. The 69 are the gap: the project's own tests passed a wrong fix, because SWE-bench grades with tests written for the fix, and the team never saw them. The 9 are a bug: a single call that runs out of time should hand over to the team, not end the run. Both are filed, with every issue id: [#150](https://github.com/guregodevo/memdoor/issues/150), [#151](https://github.com/guregodevo/memdoor/issues/151), [#152](https://github.com/guregodevo/memdoor/issues/152).
 
 ## The data
 
