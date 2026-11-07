@@ -15,19 +15,35 @@ I did not expect a model like DeepSeek to gain much over a single call. The poin
 
 | | resolved | $ per issue | median time |
 |---|---|---|---|
-| single call | 388 / 500 (77.6%) | 0.012 | 91 s |
+| single call (the baseline, a separate run) | 388 / 500 (77.6%) | 0.012 | 91 s |
 | team-solve | **400** / 500 (80.0%) | 0.022 | 258 s |
+| team-solve's own single call (its first step) | 393 / 500 (78.6%) | | |
 
-**The takeaway: +3.1% resolved for one cent more per task ($0.022 instead of $0.012) on a Flash model.** That is 12 more issues out of 500, from 77.6% to 80.0%.
+**The takeaway: 3.1% more issues resolved for one cent more per task ($0.022 instead of $0.012) on a Flash model.** That is 400 issues instead of 388, from 77.6% to 80.0%.
 
-**On Django, the largest project in the benchmark, the gain is +6.6%: 195 of 231 issues instead of 183.** team-solve fixed 15 Django issues the single call missed and lost 3 (p = 0.008).
+**team-solve starts with its own single call and keeps it unless the team does better. It never lost an issue that single call had solved: 7 gained, 0 lost (p = 0.016). On the 324 issues I never looked at while building team-solve, 5 gained and 0 lost.**
 
-| | issues | only team-solve | only the single call | net |
-|---|---|---|---|---|
-| Django | 231 | 15 | 3 | **+12** |
-| all other projects | 269 | 12 | 12 | 0 |
+The baseline is a separate single call, and the same model does not solve the same issue the same way twice: the baseline and team-solve's own single call disagree on 47 issues. That noise makes the comparison with the baseline weaker:
 
-team-solve decides when the team steps in by running the project's own tests. Django's test suite is large and catches a wrong fix, so the team steps in where it should. In the other projects the tests catch less.
+| | issues | team-solve against its own single call | p | team-solve against the baseline | p |
+|---|---|---|---|---|---|
+| all | 500 | 7 gained, 0 lost | 0.016 | 27 gained, 15 lost | 0.09 |
+| seen while building team-solve | 176 | 2 gained, 0 lost | 0.5 | 14 gained, 4 lost | 0.03 |
+| never seen | 324 | 5 gained, 0 lost | 0.06 | 13 gained, 11 lost | 0.84 |
+
+Before this run I ran pilots on 172 Verified issues and changed team-solve after watching them: the step that keeps a single call the team cannot beat, how a check that already fails is counted, a crash on non-ASCII prompts. With the ten its README names, that is 176 issues, mostly the first in the dataset's order ([the list](https://github.com/guregodevo/swe-bench/blob/main/kit/seen-ids.txt)).
+
+## When the single call fails
+
+team-solve's own single call failed on 107 issues. What happened next:
+
+| the single call's patch | issues | team-solve fixed |
+|---|---|---|
+| failed its check, so the team's agents took over | 29 | 7 |
+| wrong, but its check passed, so the team never ran | 69 | 0 |
+| unfinished: the single call ran past its 30-minute limit and the run stopped there | 9 | 0 |
+
+The team fixes 7 of the 29 it works on, 5 of 21 on the issues I never looked at. The 69 are the gap: the project's own tests passed a wrong fix, because SWE-bench grades with tests written for the fix, and the team never saw them. The 9 are a bug: a single call that runs out of time should hand over to the team, not end the run. Both are filed, with every issue id: [#150](https://github.com/guregodevo/memdoor/issues/150), [#151](https://github.com/guregodevo/memdoor/issues/151), [#152](https://github.com/guregodevo/memdoor/issues/152).
 
 ## The data
 
@@ -40,7 +56,7 @@ Issue by issue:
 | only the single call | 15 |
 | neither | 85 |
 
-27 against 15 is p = 0.09.
+27 against 15 is p = 0.09. On every one of the 15, team-solve's own single call failed too: the baseline's separate run was right where team-solve's was not.
 
 By repository:
 
@@ -145,7 +161,7 @@ memdoor workflow run team-solve "Fix the failing date parser test; go test ./...
 
 ## What it is not
 
-It is not on the leaderboard. SWE-bench Verified takes submissions only from academic teams and research labs since November 2025. team-solve was tuned on ten Verified issues; without them the scores are 77.8% and 80.2%. Each issue ran once. Fable 5 is about 95%.
+It is not on the leaderboard. SWE-bench Verified takes submissions only from academic teams and research labs since November 2025. team-solve was built while watching 176 of these issues, split out above. Each issue ran once. Fable 5 is about 95%.
 
 In the first run, OpenRouter's web search reached upstream fixes on 126 issues. Those 126 ran again with the web tools removed. The [run's README](https://github.com/guregodevo/swe-bench#what-went-wrong-and-what-was-run-again) has the details.
 
