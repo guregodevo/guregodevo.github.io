@@ -23,7 +23,7 @@ I did not expect a model like DeepSeek to gain much over a single call. The poin
 
 **team-solve never lost an issue its own single call had solved. It gained 7 and lost 0 (p = 0.016).** On the 324 issues I never looked at while building it, it gained 5 and lost 0.
 
-team-solve starts with its own single call and keeps it unless the team does better. The baseline is a separate single call, and the two disagree on 47 issues, so the comparison with the baseline is noisier:
+team-solve starts with its own single call and keeps it unless the team does better. The baseline is a separate single call. On 47 issues one of the two single calls solved it and the other did not, so the comparison with the baseline is noisier:
 
 | | issues | team-solve against its own single call | p | team-solve against the baseline | p |
 |---|---|---|---|---|---|
