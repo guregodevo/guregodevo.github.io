@@ -33,6 +33,18 @@ The baseline is a separate single call, and the same model does not solve the sa
 
 Before this run I ran pilots on 172 Verified issues and changed team-solve after watching them: the step that keeps a single call the team cannot beat, how a check that already fails is counted, a crash on non-ASCII prompts. With the ten its README names, that is 176 issues, mostly the first in the dataset's order ([the list](https://github.com/guregodevo/swe-bench/blob/main/kit/seen-ids.txt)).
 
+## When the single call fails
+
+team-solve's own single call failed on 115 issues. What it had produced, and what the team did with it:
+
+| the single call left | issues | team-solve fixed |
+|---|---|---|
+| no patch | 29 | 13 (45%) |
+| a patch its check failed | 4 | 2 (50%) |
+| a wrong patch its check passed | 82 | 0 |
+
+When the team gets to work, it fixes nearly half: 15 of 33, and 11 of 26 on the issues I never looked at. It got to work on 33 of the 115. The other 82 passed the project's own tests and were still wrong, because SWE-bench grades with tests written for the fix. The team never saw them. A check that proves the bug, a test that fails before the change and passes after, is where the next points are.
+
 ## The data
 
 Issue by issue:
