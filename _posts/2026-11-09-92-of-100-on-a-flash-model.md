@@ -21,7 +21,7 @@ On October 31 I posted [five Qwen3.8-27B agents against Fable 5](https://news.yc
 **Fable 5's score on a Flash model, for 1/11 of its bill.**
 
 - The GVS5H rows are the paper's: means of five passes, priced at list rates. Mine is one pass, priced at what OpenRouter billed, cache included.
-- On the same model the two harnesses tie on score and cost. Priced on one rate card, OpenRouter's for DeepSeek V4.1 Flash (1017) with no cache, GVS5H's tokens cost $6.25 and mine $6.67. They write the same output (12.5M and 12.3M tokens); mine reads more input (88M against 1.5M), most of it from cache. The gap with Fable 5 is the model's price.
+- On the same model the two harnesses tie on score and cost. At the rates OpenRouter billed my run, GVS5H's own token counts (`runs/per_problem_tokens.json`) cost $4.48 to $5.74 a pass, $4.99 on average; mine cost $5.49. They write the same output (12.4M and 12.3M tokens); mine reads more input (88M against 1.5M), most of it from cache. The gap with Fable 5 is the model's price.
 - Grading follows the paper's rule for the problems that accept more than one answer. The stock grader gives 91.
 
 [The ranking with every row](https://github.com/guregodevo/memdoor/tree/main/examples/workflows/team-solve/bench#ranking-on-the-100) · [Per problem](https://github.com/guregodevo/memdoor/blob/main/examples/workflows/team-solve/bench/results/team-solve-fanout-lcb.tsv) · [The 8 misses, and what is next](https://github.com/guregodevo/memdoor/issues/234) · [Memdoor](https://memdoor.ai)
