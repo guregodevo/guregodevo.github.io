@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "92 of the 100 hardest LiveCodeBench problems: the GVS5H score on the same model, 91% cheaper than Fable 5"
+title: "92 of the 100 hardest LiveCodeBench problems with DeepSeek V4.1 Flash: the GVS5H score, 91% cheaper than Fable 5"
 date: 2026-11-09
 ---
 
