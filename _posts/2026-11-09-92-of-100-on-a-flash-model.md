@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "92 of the 100 hardest LiveCodeBench problems: 64% cheaper than GVS5H, 91% cheaper than Fable 5"
+title: "92 of the 100 hardest LiveCodeBench problems: the GVS5H score on the same model, 91% cheaper than Fable 5"
 date: 2026-11-09
 ---
 
@@ -21,7 +21,7 @@ On October 31 I posted [five Qwen3.8-27B agents against Fable 5](https://news.yc
 **Fable 5's score on a Flash model, for 1/11 of its bill.**
 
 - The GVS5H rows are the paper's: means of five passes, priced at list rates. Mine is one pass, priced at what OpenRouter billed, cache included.
-- On the same model and the same prices, the paper's harness and mine cost about the same. The gap with Fable 5 is the model's price; the harness matches the paper's.
+- On the same model the two harnesses tie on score and cost. Priced on one rate card, OpenRouter's for DeepSeek V4.1 Flash (1017) with no cache, GVS5H's tokens cost $6.25 and mine $6.67. They write the same output (12.5M and 12.3M tokens); mine reads more input (88M against 1.5M), most of it from cache. The gap with Fable 5 is the model's price.
 - Grading follows the paper's rule for the problems that accept more than one answer. The stock grader gives 91.
 
 [The ranking with every row](https://github.com/guregodevo/memdoor/tree/main/examples/workflows/team-solve/bench#ranking-on-the-100) · [Per problem](https://github.com/guregodevo/memdoor/blob/main/examples/workflows/team-solve/bench/results/team-solve-fanout-lcb.tsv) · [The 8 misses, and what is next](https://github.com/guregodevo/memdoor/issues/234) · [Memdoor](https://memdoor.ai)
