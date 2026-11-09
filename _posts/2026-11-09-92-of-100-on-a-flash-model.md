@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "92 of the 100 hardest LiveCodeBench problems on a Flash model"
+title: "92 of the 100 hardest LiveCodeBench problems: 64% cheaper than GVS5H, 91% cheaper than Fable 5"
 date: 2026-11-09
 ---
 
